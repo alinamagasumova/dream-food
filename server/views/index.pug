@@ -2,8 +2,11 @@ extends layout
 
 block body 
     h2 Это контент главной страницы
-    ul
+    table
+        tr
+            each nm in names 
+                th #{nm}
         -for(pr of products)
-            li
-                each el, key in pr 
-                    span #{key}: #{el}, &#032;
+            tr
+                each el in pr 
+                    td #{el}
