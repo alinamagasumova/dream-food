@@ -18,6 +18,8 @@ table {
   box-shadow: 1px 1px 10px 1px #363333;
   border: 1px solid #ddd;
   text-align: center;
+  margin: 1rem;
+  border-collapse: collapse;
 }
 table th {
   padding: 5px;
@@ -29,4 +31,7 @@ table td {
   width: 70px;
   height: 20px;
   padding: 5px;
+}
+form {
+  margin: 2rem;
 }

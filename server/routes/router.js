@@ -19,9 +19,6 @@ const products = [];
 for (let i=1; i<data.length;i++) {
     products.push(new Product(data[i].split(';')));
 }
-console.log(products);
-console.log(names);
-
 
 router.get('/', (rq, rs) => {
     rs.render('index', {
