@@ -7,14 +7,12 @@ const readFile = (path) => {
 }
 data = readFile('./data/market.csv');
 data = data.split('\n');
-// console.log(data);
+const names = data[0].split(';');
 
 const Product = function(productsArr) {
-    let names = data[0].split(';');
     names.forEach((name, i) => {this[name] = productsArr[i]});
 };
 
-const names = data[0].split(';');
 const products = [];
 for (let i=1; i<data.length;i++) {
     products.push(new Product(data[i].split(';')));
