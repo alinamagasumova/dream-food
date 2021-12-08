@@ -26,4 +26,10 @@ router.get('/', (rq, rs) => {
     });
 });
 
+router.get('/veg', (rq, rs) => {
+    rs.render('category', {
+        title: 'Овощи'
+    });
+});
+
 module.exports = router;
