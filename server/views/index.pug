@@ -6,10 +6,13 @@ block body
         tr
             each nm in names 
                 th #{nm}
+            th Изменить
         -for(pr of products)
             tr
                 each el in pr 
                     td #{el}
+                td 
+                    button(onclick='changeProduct(this.parentElement.parentElement)') Изменить
     form#addProduct(method='POST')
         input(type="text" name="name" placeholder="Название продукта") 
         select(name="type") 

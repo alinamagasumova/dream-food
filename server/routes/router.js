@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const req = require('express/lib/request');
 const fs = require("fs");
 
 let data = '';
@@ -26,9 +27,16 @@ router.get('/', (rq, rs) => {
     });
 });
 
-router.get('/veg', (rq, rs) => {
+router.get('/category/:cat', (rq, rs) => {
+    let cats = {
+        'veg': 'Овощи',
+        'fruits': 'Фрукты',
+        'berries': 'Ягоды',
+        'all': 'Все'
+    }
     rs.render('category', {
-        title: 'Овощи'
+        title: cats[rq.params.cat],
+        type: rq.params.cat
     });
 });
 

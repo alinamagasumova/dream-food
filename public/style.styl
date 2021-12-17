@@ -32,3 +32,21 @@ table
 
 form 
     margin 2rem
+
+.products
+  display grid
+  grid-template-columns repeat(4, 1fr)
+  gap 40px
+  margin 2rem
+
+.products__item
+  display flex
+  padding 40px
+  font-family sans-serif
+  flex-direction column
+  align-items center
+  justify-content center
+  box-shadow 0 0 5px 0 #0002
+  cursor pointer
+  &:hover
+    background-color: #0002

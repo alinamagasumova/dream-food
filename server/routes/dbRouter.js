@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const mongodb = require('mongodb');
 const db = require('./db.js');
 
 router.post('/add', (req, res) => {
@@ -24,8 +25,13 @@ router.post('/add', (req, res) => {
     });
 });
 
-router.get('/veg', (req, res) => {
+router.get('/category/:cat', (req, res) => {
     const client = db();
+    let cats = {
+        'veg': 'Овощи',
+        'fruits': 'Фрукты',
+        'berries': 'Ягоды',
+    }
     client.connect(err => {
         if (err) {
             res.send({'msg': 'Error connection'});
@@ -33,13 +39,39 @@ router.get('/veg', (req, res) => {
         } else {
             const table = client.db('food');
             const col = table.collection('products');
-            col.find({'type': 'Овощи'}).toArray( (err, data) => {
+            let obj = {};
+            if (req.params.cat !== 'all') {
+                obj.type = cats[req.params.cat]
+            }
+            col.find(obj).toArray( (err, data) => {
                 if (err) {
                     console.log(err);
                 } else {
                     console.log(data);
                     res.send({'data': data});
                     client.close();
+                }
+            });
+        }
+    });
+});
+
+router.get("/del/:id", (req, res) => {
+    const client = db();
+    client.connect((err) => {
+        if (err) {
+            res.send({"msg": "Error connection"});
+            client.close();
+        } else {
+            const col = client.db("food").collection("products");
+            col.deleteOne({"_id": new mongodb.ObjectId(req.params.id)}, (err, result) => { 
+                if (err) {
+                    client.close(); 
+                    res.send({"msg": "bad"});
+                } else {
+                    console.log(result);
+                    client.close();  
+                    res.send({"msg": "ok"});
                 }
             });
         }

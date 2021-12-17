@@ -3,7 +3,7 @@ const app = express();
 const serverRouter = require('./server/routes/router');
 const DBrouter = require('./server/routes/dbRouter');
 const stylus =  require('stylus');
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 4090;
 
 app.set('views', './server/views');
 app.set('view engine', 'pug');
@@ -19,5 +19,5 @@ app.use(stylus.middleware({
 
 
 app.listen(PORT, (e) => {
-    console.log('Server runs at port ' + process.env.PORT + ' or 4000');
+    console.log('Server runs at port ' + process.env.PORT + ' or 4090');
 });
